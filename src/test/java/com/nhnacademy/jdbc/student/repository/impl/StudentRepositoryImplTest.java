@@ -3,6 +3,7 @@ package com.nhnacademy.jdbc.student.repository.impl;
 import com.nhnacademy.jdbc.student.domain.Student;
 import com.nhnacademy.jdbc.util.DbUtils;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.Assume;
 import org.junit.jupiter.api.*;
 
 import java.sql.Connection;
@@ -63,7 +64,8 @@ class StudentRepositoryImplTest {
     @DisplayName("findById-student1")
     void findById() {
         Optional<Student> studentOptional = studentRepository.findById(connection,"student1");
-        log.info("student:{}", studentOptional.get());
+
+        log.info("student:{}", studentOptional.isPresent());
 
         Assertions.assertAll(
                 ()->Assertions.assertEquals("student1",studentOptional.get().getId()),
